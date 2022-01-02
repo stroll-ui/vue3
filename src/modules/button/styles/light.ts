@@ -1,7 +1,6 @@
 import commonVariables from './_common'
-import { commonLight } from '../../_styles/common'
-import type { ThemeCommonVars } from '../../_styles/common'
-import type { Theme } from '../../_mixins'
+import { commonLight } from '../../../styles/common'
+import type { ThemeCommonVars } from '../../../styles/common'
 
 export const self = (vars: ThemeCommonVars) => {
   const {
@@ -241,7 +240,7 @@ export const self = (vars: ThemeCommonVars) => {
 
 export type ButtonThemeVars = ReturnType<typeof self>
 
-const buttonLight: Theme<'Button', ButtonThemeVars> = {
+const buttonLight: any = {
   name: 'Button',
   common: commonLight,
   self

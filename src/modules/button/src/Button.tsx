@@ -12,7 +12,10 @@ Partial<ExtractPropTypes<T>>,
 | Extract<keyof T, `internal${string}`>
 >
 const buttonProps = {
-  size: String as PropType<Size>,
+  size: {
+    type: String as PropType<Size>,
+    default: 'min'
+  },
   tag: {
     type: String as PropType<keyof HTMLElementTagNameMap>,
     default: 'button'
@@ -28,18 +31,16 @@ const Button = defineComponent({
   props: buttonProps,
   render () {
     const { $slots, tag: Component } = this
+    console.log(this)
+    
     return (
       <Component>
-        <h1>
-          {
-            $slots.default ? (
-              <span>{$slots.default()}</span>
-            ) : 'default'
-          }
-          {/* <slot>sss</slot> */}
-        </h1>
+        {
+          $slots.default ? (
+            <span>{$slots.default({row: 'default'})}</span>
+          ) : 'default'
+        }
       </Component>
-      
     )
   }
 })
