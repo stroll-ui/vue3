@@ -7,6 +7,6 @@
     "target": "ES6"
   },
   "references": [
-    { "path": "../../src/tsconfig.cjs.json" }
+    { "path": "../../src/modules/tsconfig.cjs.json" }
   ]
 }
