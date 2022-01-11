@@ -1,4 +1,4 @@
-import { defineComponent, PropType, ExtractPropTypes } from 'vue'
+import { defineComponent, PropType, ExtractPropTypes, h } from 'vue'
 import type { Type, Size } from './interface'
 const useTheme = {
   theme: Object,

@@ -3,9 +3,6 @@
   "references": [
     {
       "path": "./src/modules/tsconfig.cjs.json"
-    },
-    {
-      "path": "./themes/tusimple/tsconfig.cjs.json"
     }
   ]
 }

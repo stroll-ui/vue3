@@ -2,7 +2,7 @@ import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import vueJsx from '@vitejs/plugin-vue-jsx'
 import { resolve } from 'path'
-const pathResolve = (dir) => resolve(__dirname, '.', dir)
+const pathResolve = (dir: string) => resolve(__dirname, '.', dir)
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => {
@@ -34,7 +34,7 @@ function BuildUI () {
       formats: ['es', 'cjs', 'umd'],
       entry: resolve(__dirname, 'src/modules/index.ts'),
       name: 'SUI',
-      fileName: (format) => `stroll-ui.${format}.js`
+      fileName: (format: string) => `stroll-ui.${format}.js`
     },
     sourcemap: true,
     rollupOptions: {

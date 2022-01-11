@@ -1,14 +1,14 @@
 {
-  "name": "vue3-ui",
+  "name": "@stroll/vue3-ui",
   "version": "0.0.0",
-  "main": "lib/stroll-ui.cjs.js",
-  "module": "lib/stroll-ui.es.js",
+  "main": "lib/index.js",
+  "module": "es/index.js",
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc --noEmit && vite build --mode pro",
     "buildUI": "vue-tsc --noEmit && vite build --mode buildUI",
-    "build:package": "pnpm run gen-version && pnpm run clean && tsc -b --force tsconfig.esm.json && node scripts/pre-build/pre-cjs-build.js && tsc -b --force tsconfig.cjs.json && node scripts/post-build && rimraf {es,lib}/*.tsbuildinfo",
-    "clean": "rimraf site lib es node_modules/naive-ui themes/**/es themes/**/lib",
+    "build:package": "pnpm run gen-version && pnpm run clean && tsc -b --force ./tsconfig.esm.json && node ./scripts/pre-build/pre-cjs-build.js && tsc -b --force ./tsconfig.cjs.json && node scripts/post-build && rimraf {es,lib}/*.tsbuildinfo",
+    "clean": "rimraf lib es",
     "gen-version": "node scripts/gen-version",
     "preview": "vite preview",
     "UI": "rollup -c"

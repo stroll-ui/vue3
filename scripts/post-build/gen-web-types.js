@@ -5,7 +5,7 @@ const { kebabCase } = require('lodash')
 
 exports.genWebTypes = function genWebTypes () {
   const components = require('../../lib/components')
-  const { default: version } = require('../../lib/version')
+  const { version } = require('../../package')
 
   const tags = []
 

@@ -1,7 +1,9 @@
 {
   "compilerOptions": {
+    "baseUrl": "./",
     "paths": {
-      "stroll-ui": ["./src"]
+      "@": ["./src"],
+      "@modules": ["./src/modules"]
     },
     "strict": true,
     "strictNullChecks": true,
