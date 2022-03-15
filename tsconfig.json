@@ -3,7 +3,8 @@
     "baseUrl": "./",
     "paths": {
       "@": ["./src"],
-      "@modules": ["./src/modules"]
+      "@modules": ["./src/modules"],
+      "@methods": ["./src/methods"]
     },
     "strict": true,
     "strictNullChecks": true,

@@ -16,7 +16,8 @@ export default defineConfig(({ mode }) => {
       extensions: ['.ts', 'js', '.tsx', 'jsx', '.vue', '.styl', '.json'],
       alias: {
         '@': resolve('src'),
-        '@modules': resolve('src/modules')
+        '@modules': resolve('src/modules'),
+        '@methods': resolve('src/methods')
       },
     },
     server: {

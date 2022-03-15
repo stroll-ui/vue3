@@ -14,7 +14,7 @@
     "UI": "rollup -c"
   },
   "dependencies": {
-    "naive-ui": "^2.26.4",
+    "naive-ui": "^2.25.8",
     "vue": "^3.2.25"
   },
   "devDependencies": {

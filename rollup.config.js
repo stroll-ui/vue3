@@ -28,6 +28,8 @@ export default {
       resolve: ['.js', '.jsx', '.ts', '.tsx'],
       entries: {
         '@': resolve(__dirname, 'src'),
+        '@modules': resolve('src/modules'),
+        '@methods': resolve('src/methods')
       },
     }),
     nodeResolve({

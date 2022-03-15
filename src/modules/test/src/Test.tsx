@@ -9,7 +9,7 @@ type themePropKeys = keyof typeof useTheme
 export type ExtractPublicPropTypes<T> = Omit<Partial<ExtractPropTypes<T>>,
   | Exclude<themePropKeys, 'themeOverrides'>
   | Extract<keyof T, `internal${string}`>>
-const buttonProps = {
+const testProps = {
   size: {
     type: String as PropType<Size>,
     default: 'min'
@@ -23,10 +23,10 @@ const buttonProps = {
     default: 'default'
   },
 } as const
-export type ButtonProps = ExtractPublicPropTypes<typeof buttonProps>
-const Button = defineComponent({
-  name: 'Button',
-  props: buttonProps,
+export type TestProps = ExtractPublicPropTypes<typeof testProps>
+const Test = defineComponent({
+  name: 'Test',
+  props: testProps,
   render () {
     const { $slots, tag: Component } = this
     console.log(this)
@@ -54,4 +54,4 @@ const Button = defineComponent({
   }
 })
 
-export default Button
+export default Test
