@@ -29,7 +29,7 @@ export default defineConfig(({ mode }) => {
 
 function BuildUI () {
   return {
-    outDir: 'lib',
+    outDir: 'dist',
     lib: {
       formats: ['es', 'cjs', 'umd'],
       entry: resolve(__dirname, 'src/modules/index.ts'),

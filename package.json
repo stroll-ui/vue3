@@ -5,8 +5,8 @@
   "module": "es/index.js",
   "scripts": {
     "dev": "vite",
-    "build": "vue-tsc --noEmit && vite build --mode pro",
-    "buildUI": "vue-tsc --noEmit && vite build --mode buildUI",
+    "build": "vite build --mode pro",
+    "buildUI": "vite build --mode buildUI",
     "build:package": "pnpm run gen-version && pnpm run clean && tsc -b --force ./tsconfig.esm.json && node ./scripts/pre-build/pre-cjs-build.js && tsc -b --force ./tsconfig.cjs.json && node scripts/post-build && rimraf {es,lib}/*.tsbuildinfo",
     "clean": "rimraf lib es",
     "gen-version": "node scripts/gen-version",
@@ -14,9 +14,12 @@
     "UI": "rollup -c"
   },
   "dependencies": {
+    "naive-ui": "^2.26.4",
     "vue": "^3.2.25"
   },
   "devDependencies": {
+    "@babel/core": "^7.17.5",
+    "@babel/parser": "^7.17.3",
     "@babel/preset-env": "^7.16.7",
     "@css-render/plugin-bem": "^0.15.8",
     "@css-render/vue3-ssr": "^0.15.8",
@@ -32,6 +35,7 @@
     "highlight.js": "^11.3.1",
     "lodash": "^4.17.21",
     "lodash-es": "^4.17.21",
+    "rimraf": "^3.0.2",
     "rollup": "^2.62.0",
     "rollup-plugin-babel": "^4.4.0",
     "rollup-plugin-typescript2": "^0.31.1",
