@@ -1,6 +1,7 @@
 import { App } from 'vue'
 
 type ComponentType = any
+type MethodType = { [key: string]: Function }
 
 export interface NUiInstance {
   version: string
@@ -9,13 +10,15 @@ export interface NUiInstance {
 }
 
 interface NUiCreateOptions {
+  methods?: MethodType
   components?: ComponentType[]
   componentPrefix?: string
 }
 
 function create ({
   componentPrefix = 'S',
-  components = []
+  components = [],
+  methods = {}
 }: NUiCreateOptions = {}): NUiInstance {
   const installTargets: App[] = []
   function registerComponent (
@@ -39,6 +42,9 @@ function create ({
           registerComponent(app, aliasName, component)
         })
       }
+    })
+    Object.keys(methods).forEach(key => {
+      app.config.globalProperties[`$${key}`] = methods[key]
     })
   }
   return {
