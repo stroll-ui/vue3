@@ -11,7 +11,7 @@
     "jsx": "react",
     "jsxFactory": "h",
     "jsxFragmentFactory": "Fragment",
-    "module": "ES6",
+    "module": "esnext",
     "moduleResolution": "Node",
     "declaration": true,
     "forceConsistentCasingInFileNames": true,

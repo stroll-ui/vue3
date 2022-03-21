@@ -1,1 +1,1 @@
-export { default as SLayout } from './src/Layout.vue'
+export { default as SLayout } from './src/Layout'

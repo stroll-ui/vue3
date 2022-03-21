@@ -7,7 +7,7 @@
     <span>header1</span>
   </template> -->
   <template #content>
-    <span>content1</span>
+    <router-view />
   </template>
 </SLayout>
 </template>

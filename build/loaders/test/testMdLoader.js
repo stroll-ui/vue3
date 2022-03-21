@@ -18,5 +18,3 @@ const mdLoader = require('../NaiveUIMdLoader')
 //   })
 //   return `<n-anchor :top="32" position="absolute" affix style="width: 132px;">${linkTags.join('\n')}</n-anchor>`
 // }
-
-console.log(mdLoader.call({ resourcePath: 'xxx' }, content, 'xxx'))

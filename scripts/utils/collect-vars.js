@@ -25,7 +25,6 @@ function collectVars (code) {
  * @param {string[]} vars
  */
 function genDts (vars) {
-  console.log(vars)
   return `interface CssVars {
 ${vars.map((v) => "  '" + v + "': string").join('\n')}
 }\n`

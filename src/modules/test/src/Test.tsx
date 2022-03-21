@@ -29,7 +29,6 @@ const Test = defineComponent({
   props: testProps,
   render () {
     const { $slots, tag: Component } = this
-    console.log(this)
     const form: any = {
       b: {},
       a: {},
@@ -41,7 +40,6 @@ const Test = defineComponent({
     arr.forEach(key => {
       Temporary[key] = form[key]
     })
-    console.log(Temporary)
     return (
       <Component>
         {

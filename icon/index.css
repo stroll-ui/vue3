@@ -1,0 +1,24 @@
+@import url('./iconfont.css');
+[class*=stroll_] {
+  font-family: "iconfont" !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+::-webkit-scrollbar { /* 滚动条 */
+  width: 9px;
+  height: 9px;
+}
+::-webkit-scrollbar-track { /* 滚动槽 */
+  -webkit-box-shadow: #dddddd;
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb { /* 滚动条滑块 */
+  border-radius: 10px;
+  background-color: #dddddd;
+  -webkit-box-shadow: #dddddd;
+}
+::-webkit-scrollbar-thumb:window-inactive {
+  background-color: #dddddd;
+}
