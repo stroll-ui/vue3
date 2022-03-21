@@ -19,10 +19,6 @@ export default defineComponent({
     }
   },
   render () {
-    // icon?: string;
-    //   key?: string;
-    //   label?: string;
-    //   children?: string;
     const renderMenuLabel = ( option: MenuOption) => {
       return h( 'a', option[this.field.label] as string )
     }
