@@ -2,7 +2,6 @@ import {
   defineComponent,
   nextTick,
   onMounted,
-  watch,
   onBeforeUnmount,
   h
 } from 'vue'
@@ -17,6 +16,11 @@ import variable from './lib/variable'
 import { SEl, windowHeight } from '../../methods'
 import Menu from './compontents/menu'
 import { layoutProps } from './lib/interface'
+import {
+  StrollLayoutLeftMenu,
+  StrollLayoutRightContent,
+  StrollLayoutRightHeader
+} from './styles/layoutStyle'
 
 export default defineComponent({
   name: 'Layout',
@@ -39,13 +43,13 @@ export default defineComponent({
     }
 
     const onResize = async () => {
-      const headerEl = await SEl('.stroll-layout-header')
-      const contentEl = await SEl('.stroll-layout-content')
-      const footerEl = await SEl('.stroll-layout-footer')
+      const headerEl = await SEl('.stroll-layout-right-header')
+      const contentEl = await SEl('.stroll-layout-right-content')
+      const footerEl = await SEl('.stroll-layout-right-footer')
       const clientHeight =  await windowHeight()
 
       if (clientHeight) {
-        contentEl.style.height = `${clientHeight - headerEl.offsetHeight - footerEl.offsetHeight}px`
+        contentEl.style.height = `${clientHeight - headerEl.offsetHeight - footerEl.offsetHeight - 42}px`
       }
     }
     const setCollapsed = async () => {
@@ -53,7 +57,9 @@ export default defineComponent({
     }
 
     const SiderTrigger = async () => {
-      const layoutLeftToggleBar = await SEl('.stroll-layout-left .n-layout-toggle-bar')
+      // width: 80%
+      // margin-left: 10%;
+      const layoutLeftToggleBar = await SEl('.n-layout-toggle-bar')
       const layoutLeftToggleBarChilds = layoutLeftToggleBar.childNodes
 
       layoutLeftToggleBarChilds.forEach((el: any) => {
@@ -86,53 +92,54 @@ export default defineComponent({
     }
   },
   render () {
-    const SiderStyle = `height: calc(100vh)`
-    const HeaderStyle = `cursor: pointer; display:inline-block; font-size: 16px; padding: 12px 10px;`
-    const contentStyle = `padding: 20px`
-
+    
     return (
       <NLayout has-sider >
         <NLayoutSider
           bordered
           showTrigger="bar"
           collapseMode="width"
+          style='height: calc(100vh)'
           triggerStyle="width: 20px; right: -20px;"
           collapsedTriggerStyle="width: 20px; right: -20px;"
-          class="stroll-layout-left"
-          style={SiderStyle}
           collapsed={this.collapsed}
           collapsedWidth={this.menuMinSize}
           width={this.menuMaxSize}
           nativeScrollbar={false}
           onUpdate:collapsed={this.onCollapsed}>
-            {this.$slots.menu ? (
-              <dev>{this.$slots.menu()}</dev>
-            ) : (
-              <Menu />
-            )}
+              {this.$slots.menu ? (
+                <div>{this.$slots.menu()}</div>
+                ) : (
+                <StrollLayoutLeftMenu Switch={this.collapsed}>
+                  <Menu class="stroll-layout-left-menu" />
+                </StrollLayoutLeftMenu>
+              )}
         </NLayoutSider>
         <NLayout class="stroll-layout-right">
-          <NLayoutHeader bordered class="stroll-layout-header">
-            {this.$slots.header ? (
-              <dev>{this.$slots.header()}</dev>
-            ) : (
-              <div>
-                <i
-                  onClick={this.setCollapsed}
-                   style={HeaderStyle}
-                  class={this.collapsed ? 'stroll_menu_open': 'stroll_menu_stow'}
-                ></i>
-              </div>
-            )}
+          <NLayoutHeader bordered>
+            <StrollLayoutRightHeader class="stroll-layout-right-header">
+              {this.$slots.header ? (
+                <div>{this.$slots.header()}</div>
+              ) : (
+                <div>
+                  <i
+                    onClick={this.setCollapsed}
+                    class={this.collapsed ? 'stroll-menu_open': 'stroll-menu_stow'}
+                  ></i>
+                </div>
+              )}
+            </StrollLayoutRightHeader>
           </NLayoutHeader>
-          <NLayoutContent style={contentStyle} class="stroll-layout-content">
-            {this.$slots.content ? (
-              <dev>{this.$slots.content()}</dev>
-            ) : (<dev>content</dev>)}
+          <NLayoutContent>
+            <StrollLayoutRightContent class="stroll-layout-right-content">
+              {this.$slots.content ? (
+                <div>{this.$slots.content()}</div>
+              ) : (<div>content</div>)}
+            </StrollLayoutRightContent>
           </NLayoutContent>
-          <NLayoutFooter class="stroll-layout-footer">
+          <NLayoutFooter class="stroll-layout-right-footer">
             {this.$slots.footer ? (
-              <dev>{this.$slots.footer}</dev>
+              <div>{this.$slots.footer}</div>
             ) : null}
           </NLayoutFooter>
         </NLayout>

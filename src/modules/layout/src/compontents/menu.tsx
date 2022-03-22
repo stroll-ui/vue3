@@ -27,7 +27,7 @@ export default defineComponent({
       return null
     }
     const expandIcon = () => {
-      return h(NIcon, null, { default: () => h('i', { class: 'stroll_down' }) })
+      return h(NIcon, null, { default: () => h('i', { class: 'stroll-down' }) })
     }
     const handleUpdateValue = (key: string, item: MenuOption) => {
       if (['http://', 'https:/'].includes(key.slice(0, 7)) || key.slice(0, 2) === '//') {
@@ -39,7 +39,6 @@ export default defineComponent({
       } else {
         this.router.push({ name: key })
       }
-      
     }
     return (
       <NMenu

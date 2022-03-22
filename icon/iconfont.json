@@ -2,7 +2,7 @@
   "id": "3251973",
   "name": "stroll",
   "font_family": "iconfont",
-  "css_prefix_text": "stroll_",
+  "css_prefix_text": "stroll-",
   "description": "stroll",
   "glyphs": [
     {
