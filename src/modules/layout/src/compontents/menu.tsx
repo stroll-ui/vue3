@@ -42,6 +42,7 @@ export default defineComponent({
     }
     return (
       <NMenu
+        root-indent={12}
         collapsed={this.collapsed}
         collapsedWidth={this.menuMinSize}
         collapsedIconSize={this.collapsedIconSize}
