@@ -23,7 +23,7 @@ export default defineComponent({
       return h( 'a', option[this.field.label] as string )
     }
     const renderMenuIcon = (option: MenuOption) => {
-      if (option[this.field.icon])  return h(NIcon, null, { default: () => h('i', { class: option[this.field.icon] }) })
+      if (option[this.field.icon])  return h(NIcon, null, () => h('i', { class: option[this.field.icon] }))
       return null
     }
     const expandIcon = () => {
@@ -40,6 +40,7 @@ export default defineComponent({
         this.router.push({ name: key })
       }
     }
+    console.log(this.menuOptions);
     return (
       <NMenu
         root-indent={12}

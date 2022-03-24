@@ -21,13 +21,14 @@ import {
   StrollLayoutLeftMenu,
   StrollLayoutRightContent,
   StrollLayoutRightHeader
-} from './styles/layoutStyle'
+} from './styles'
 
 export default defineComponent({
   name: 'Layout',
   props: layoutProps,
   setup (props, content) {
-    const { slots: slotList} = content || {}
+    const { slots: slotList, attrs } = content || {}
+    
     if (props.field) {
       Object.keys(props.field).forEach(k => {
         variable.field[k] = props.field[k]
@@ -35,7 +36,13 @@ export default defineComponent({
     }
     Object.keys(props).forEach(key => {
       if(variable[key]) {
-        variable[key].value = props[key]
+        if (Array.isArray(props[key]) && variable[key]) {
+          props[key].forEach((item: any) => {
+            variable[key].push(item)
+          })
+        } else {
+          variable[key].value = props[key]
+        }
       }
     })
 
@@ -54,20 +61,8 @@ export default defineComponent({
       }
     }
 
-    const SiderTrigger = async () => {
-      // width: 80%
-      // margin-left: 10%;
-      const layoutLeftToggleBar = await SEl('.n-layout-toggle-bar')
-      const layoutLeftToggleBarChilds = layoutLeftToggleBar.childNodes
-
-      layoutLeftToggleBarChilds.forEach((el: any) => {
-        el.style.left = '9px'
-      })
-    }
-
     onMounted(() => {
       window.addEventListener('resize', onResize)
-      SiderTrigger()
       nextTick(() => {
         onResize()
       })
@@ -81,6 +76,7 @@ export default defineComponent({
     return {
       onCollapsed,
       onResize,
+      attrs,
       variable,
       slotList,
       collapsed,
@@ -106,18 +102,32 @@ export default defineComponent({
             width={this.menuMaxSize}
             nativeScrollbar={false}
             onUpdate:collapsed={this.onCollapsed}>
-              <img src="" alt="" class="stroll-layout-left-logo" />
               {this.$slots.menu ? (
                 <div>{this.$slots.menu()}</div>
-                ) : (
-                <StrollLayoutLeftMenu Switch={this.collapsed}>
+              ) : (
+                <StrollLayoutLeftMenu
+                  MenuMinSize={this.menuMinSize}
+                  MenuMaxSize={this.menuMaxSize}
+                  Switch={this.collapsed}
+                >
+                  {this.collapsed ? (
+                    <img
+                      src={this.attrs.minLogo as string | undefined}
+                      alt="logo" class="stroll-layout-left-logo-min"
+                    />
+                  ) : (
+                    <img
+                      src={this.attrs.logo as string | undefined}
+                      alt="logo" class="stroll-layout-left-logo"
+                    />
+                  )}
                   <Menu class="stroll-layout-left-menu" />
                 </StrollLayoutLeftMenu>
               )}
           </NLayoutSider>
           <NLayout class="stroll-layout-right">
             <NLayoutHeader bordered>
-              <StrollLayoutRightHeader>
+              <StrollLayoutRightHeader class="stroll-layout-right-header" >
                 {this.$slots.header ? (
                   <div>{this.$slots.header()}</div>
                 ) : (
@@ -131,7 +141,7 @@ export default defineComponent({
               </StrollLayoutRightHeader>
             </NLayoutHeader>
             <NLayoutContent>
-              <StrollLayoutRightContent>
+              <StrollLayoutRightContent class="stroll-layout-right-content">
                 {this.$slots.content ? (
                   <div>{this.$slots.content()}</div>
                 ) : (<div>content</div>)}
